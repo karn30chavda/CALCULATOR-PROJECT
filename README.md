@@ -1,127 +1,82 @@
-🔢 Responsive Dark-Themed Calculator
+Progressive Web App (PWA) - Calculator
 
----
+Overview
 
-A modern, responsive, and stylish calculator built with HTML, CSS, and JavaScript. This project features a dark theme, smooth UI, and is optimized for all screen sizes.
----
-
-🚀 Features
-
-✅ Fully Responsive – Works on all screen sizes (mobile, tablet, desktop).
-✅ Dark Theme UI – A sleek and modern interface with smooth styling.
-✅ Basic Arithmetic Operations – Supports addition, subtraction, multiplication, and division.
-✅ AC (All Clear) & DEL (Delete) – Easily clear or delete last input.
-✅ Properly Aligned Display – Prevents text overflow and keeps UI structured.
-✅ Styled Using Pure CSS – No frameworks, only clean and efficient CSS.
-✅ Lightweight & Fast – No unnecessary dependencies.
-
----
-
-📂 Project Structure
-
-📦 Calculator
- ┣ 📜 index.html        # Main HTML file (structure)
- ┣ 📜 styles.css        # Custom styling (Dark Theme)
- ┣ 📜 script.js         # JavaScript logic
- ┗ 📜 README.md         # Project documentation
-
----
-
-🔧 Installation & Usage
-
-1. Clone this repository
-
-git clone https://github.com/your-username/calculator.git
+This is a simple yet powerful Progressive Web App (PWA) calculator with a splash screen, theme toggle, and calculation history features. The app is designed to be responsive, lightweight, and user-friendly.
 
 
-2. Open index.html in any browser
+
+Features
+
+PWA Support: Installable on mobile and desktop.
+Splash Screen: Animated splash screen before loading the calculator.
+Responsive Design: Works on all screen sizes.
+Dark & Light Themes: Toggle between themes.
+Calculation History: Stores recent calculations.
+Keyboard & Click Support: Can be used with both keyboard and mouse.
 
 
-3. Start calculating! 🎉
+
+Technologies Used
+HTML, CSS, JavaScript for frontend.
+Service Workers for PWA capabilities.
+Local Storage to save history.
 
 
----
 
-⚙️ How It Works
+Installation
 
-Click on the number and operator buttons to input calculations.
-
-Press = to get the result.
-
-Press AC to clear everything.
-
-Press DEL to remove the last input character.
+Clone the repository:
+git clone https:https://github.com/karn30chavda/CALCULATOR-PROJECT
+Open index.html in a browser or deploy it on a server.
+To install as a PWA, click the install prompt when it appears in a supported browser.
 
 
----
 
-🎨 UI Design Highlights
+File Structure
 
-Dark Background to reduce eye strain.
-
-Blue & Orange Accents for a professional contrast.
-
-Rounded Buttons & Smooth Hover Effects.
-
-Grid Layout for button alignment.
-
-
----
-
-📱 Responsive Design
-
-This calculator is fully responsive and adapts to different devices:
-
-✅ Mobile-Friendly (Compact layout)
-
-✅ Tablet View Optimized
-
-✅ Desktop Mode (Large buttons for easy clicks)
+📂 pwa-calculator
+ ├── 📄 index.html       # Main Calculator Page
+ ├── 📄 splash.html      # Splash Screen Page
+ ├── 📄 index.css        # Styling
+ ├── 📄 manifest.json    # PWA Configuration
+ ├── 📄 service-worker.js # Service Worker
+ ├── 📂 images           # Logo & Icons
 
 
----
 
-💡 Technologies Used
+Usage
+Open the calculator in a browser.
+Perform calculations by clicking buttons or using a keyboard.
+View history by clicking the history icon.
+Toggle dark/light mode using the theme toggle.
+PWA Features
+The app can be installed on a mobile device or desktop.
+Works offline using Service Workers.
+Fast load time with caching.
 
-HTML – Structure of the Calculator
-
-CSS – Styling & Layout
-
-JavaScript – Functional Logic
 
 
----
+Deployment
+https://calcmate-calculate.netlify.app
 
-📌 Live Demo
 
-🔗 https://simple-calculator-project-309.netlify.app/
 
----
+Contributing
+Pull requests are welcome! Feel free to submit issues or improvements.
 
-🛠 Future Improvements
 
-📌 Add Scientific Functions (sin, cos, tan, log, etc.)
-📌 Add Light/Dark Mode Toggle
-📌 Keyboard Support for Faster Input
 
----
-
-📜 License
-
+License
 This project is open-source and available under the MIT License.
 
----
 
-👨‍💻 Contributing
-
-Contributions are welcome! Feel free to fork this repo and submit a pull request.
-
----
 
 📩 Contact
-
 📧 Email: karanchavda543@gmail.com
 🐙 GitHub: karn30chavda
+
+
 
 ---
 
