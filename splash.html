@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ad8bf9;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .splash-container img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 0.5rem;
+            animation: dropBounce 2s ease-in-out;
+        }
+
+        .circular-loader {
+            border: 2px solid #ad8bf9;
+            border-top: 8px solid #488b81;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            animation: spin 2s linear infinite;
+            margin: 0.5rem auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dropBounce {
+            0% {
+                transform: translateX(100%);
+                animation-timing-function: ease-in;
+            }
+
+            60% {
+                transform: translateY(-30%);
+                animation-timing-function: ease-out;
+            }
+
+            80% {
+                transform: translateX(20%);
+                animation-timing-function: ease-in;
+            }
+
+            100% {
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+            }
+        }
+
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY();
+            }
+        }
+
+        .loading-text {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 0.5rem;
+            position: relative;
+            font-weight: bold;
+            display: flex;
+            gap: 0.2em;
+            justify-content: center;
+        }
+
+        .loading-text span {
+            display: inline-block;
+            font-weight: bolder;
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.15);
+            animation: titleReveal 3s step-start 1 forwards; 
+            opacity: 0;
+            transform: translateX(1em);
+        }
+
+        .loading-text span:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .loading-text span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-text span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .loading-text span:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .loading-text span:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .loading-text span:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .loading-text span:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .loading-text span:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="splash-container">
+        <img src="images/calculator.png" alt="Logo">
+        <div class="circular-loader"></div>
+        <div class="loading-text">
+            <span>C</span><span>a</span><span>L</span><span>c</span><span>M</span><span>a</span><span>T</span><span>e</span><span>...</span>
+        </div>
+    </div>
+    <script>
+        setTimeout(function () {
+            window.location.href = 'index.html';
+        }, 3000);
+    </script>
+</body>
+
+</html>
