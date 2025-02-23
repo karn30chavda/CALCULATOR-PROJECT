@@ -1,42 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Calculator</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Responsive Calculator</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-    <h2>Calculator</h2>
-    <div class="calculator">
-        <div class="display">
-            <div id="result">0</div>
-        </div>
-        <div class="buttons">
-            <button class="btn operator" onclick="clearDisplay()">AC</button>
-            <button class="btn operator" onclick="deleteLast()">DEL</button>
-            <button class="btn operator" onclick="appendValue('/')">/</button>
-            <button class="btn operator" onclick="appendValue('+')">+</button>
+  <!-- Theme Toggle -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+  </div>
 
-            <button class="btn" onclick="appendValue('1')">1</button>
-            <button class="btn" onclick="appendValue('2')">2</button>
-            <button class="btn" onclick="appendValue('3')">3</button>
-            <button class="btn operator" onclick="appendValue('-')">-</button>
+  <!-- History Toggle -->
+  <div class="history-toggle" onclick="toggleHistory()">
+    <i class="fas fa-history"></i>
+  </div>
 
-            <button class="btn" onclick="appendValue('4')">4</button>
-            <button class="btn" onclick="appendValue('5')">5</button>
-            <button class="btn" onclick="appendValue('6')">6</button>
-            <button class="btn operator" onclick="appendValue('*')">*</button>
-
-            <button class="btn" onclick="appendValue('7')">7</button>
-            <button class="btn" onclick="appendValue('8')">8</button>
-            <button class="btn" onclick="appendValue('9')">9</button>
-            <button class="btn" onclick="appendValue('.')">.</button>
-
-            <button class="btn zero" onclick="appendValue('0')">0</button>
-            <button class="btn equal" onclick="calculateResult()">=</button>
-        </div>
+  <!-- Calculator -->
+  <div class="calculator">
+    <div class="display">
+      <div id="result">0</div>
     </div>
-    <script src="index.js"></script>
+    <div class="buttons">
+      <button class="btn operator" onclick="clearDisplay()">AC</button>
+      <button class="btn operator" onclick="deleteLast()">DEL</button>
+      <button class="btn operator" onclick="appendValue('/')">÷</button>
+      <button class="btn operator" onclick="appendValue('*')">×</button>
+      <button class="btn" onclick="appendValue('7')">7</button>
+      <button class="btn" onclick="appendValue('8')">8</button>
+      <button class="btn" onclick="appendValue('9')">9</button>
+      <button class="btn operator" onclick="appendValue('-')">−</button>
+      <button class="btn" onclick="appendValue('4')">4</button>
+      <button class="btn" onclick="appendValue('5')">5</button>
+      <button class="btn" onclick="appendValue('6')">6</button>
+      <button class="btn operator" onclick="appendValue('+')">+</button>
+      <button class="btn" onclick="appendValue('1')">1</button>
+      <button class="btn" onclick="appendValue('2')">2</button>
+      <button class="btn" onclick="appendValue('3')">3</button>
+      <button class="btn operator" onclick="calculatePercentage()">%</button>
+      <button class="btn zero" onclick="appendValue('0')">0</button>
+      <button class="btn" onclick="appendValue('.')">.</button>
+      <button class="btn equal" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <!-- History Panel -->
+  <div id="history-panel" class="history-panel">
+    <div class="history-content">
+      <span class="close" onclick="toggleHistory()">&times;</span>
+      <h3>History</h3>
+      <ul id="history-list"></ul>
+      <button class="clear-history-btn" onclick="clearHistory()">Clear History</button>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+
+  <script>
+    let currentInput = "";
+    let history = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
+
+    function appendValue(value) {
+      if (value === '.' && currentInput.includes('.')) return;
+      currentInput += value;
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      currentInput = "";
+      updateDisplay();
+    }
+
+    function deleteLast() {
+      currentInput = currentInput.slice(0, -1);
+      updateDisplay();
+    }
+
+    function calculateResult() {
+      try {
+        const expression = currentInput;
+        currentInput = eval(currentInput).toString();
+        addToHistory(expression, currentInput);
+        updateDisplay();
+      } catch (e) {
+        currentInput = "Error";
+        updateDisplay();
+      }
+    }
+
+    function calculatePercentage() {
+      try {
+        currentInput = (eval(currentInput) / 100).toString();
+        updateDisplay();
+      } catch (e) {
+        currentInput = "Error";
+        updateDisplay();
+      }
+    }
+
+    function updateDisplay() {
+      document.getElementById("result").innerText = currentInput || "0";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-theme");
+      const themeIcon = document.querySelector(".theme-toggle i");
+      themeIcon.classList.toggle("fa-moon");
+      themeIcon.classList.toggle("fa-sun");
+    }
+
+    function addToHistory(expression, result) {
+      const now = new Date();
+      const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      history.push({ expression, result, timestamp });
+      if (history.length > 15) history.shift();
+      localStorage.setItem("calculatorHistory", JSON.stringify(history));
+    }
+
+    function updateHistoryList() {
+      const historyList = document.getElementById("history-list");
+      historyList.innerHTML = history
+        .map(
+          (entry) => `
+      <li>
+        <span>${entry.expression} = ${entry.result}</span>
+        <span class="timestamp">${entry.timestamp}</span>
+      </li>
+    `
+        )
+        .join("");
+    }
+
+    function toggleHistory() {
+      const historyPanel = document.getElementById("history-panel");
+      historyPanel.classList.toggle("active");
+      if (historyPanel.classList.contains("active")) {
+        updateHistoryList();
+      }
+    }
+
+    function clearHistory() {
+      history = [];
+      localStorage.removeItem("calculatorHistory");
+      updateHistoryList();
+    }
+
+    // Prevent zooming
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && (e.key === "+" || e.key === "-" || e.key === "0")) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener("wheel", (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+    
+  </script>
+
 </body>
 </html>
