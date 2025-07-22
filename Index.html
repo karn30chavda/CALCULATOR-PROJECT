@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Responsive Calculator</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+
+  <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- History Toggle -->
+    <div class="history-toggle" onclick="toggleHistory()">
+      <i class="fas fa-history"></i>
+    </div>
+
+    <!-- Calculator -->
+    <div class="calculator">
+      <div class="display">
+        <div id="result">0</div>
+      </div>
+      <div class="buttons">
+        <button class="btn operator" onclick="clearDisplay()">AC</button>
+        <button class="btn operator" onclick="deleteLast()">DEL</button>
+        <button class="btn operator" onclick="appendValue('/')">÷</button>
+        <button class="btn operator" onclick="appendValue('*')">×</button>
+        <button class="btn" onclick="appendValue('7')">7</button>
+        <button class="btn" onclick="appendValue('8')">8</button>
+        <button class="btn" onclick="appendValue('9')">9</button>
+        <button class="btn operator" onclick="appendValue('-')">−</button>
+        <button class="btn" onclick="appendValue('4')">4</button>
+        <button class="btn" onclick="appendValue('5')">5</button>
+        <button class="btn" onclick="appendValue('6')">6</button>
+        <button class="btn operator" onclick="appendValue('+')">+</button>
+        <button class="btn" onclick="appendValue('1')">1</button>
+        <button class="btn" onclick="appendValue('2')">2</button>
+        <button class="btn" onclick="appendValue('3')">3</button>
+        <button class="btn operator" onclick="calculatePercentage()">%</button>
+        <button class="btn zero" onclick="appendValue('0')">0</button>
+        <button class="btn" onclick="appendValue('.')">.</button>
+        <button class="btn equal" onclick="calculateResult()">=</button>
+      </div>
+    </div>
+
+    <!-- History Panel -->
+    <div id="history-panel" class="history-panel">
+      <div class="history-content">
+        <span class="close" onclick="toggleHistory()">&times;</span>
+        <h3>History</h3>
+        <ul id="history-list"></ul>
+        <button class="clear-history-btn" onclick="clearHistory()">
+          Clear History
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

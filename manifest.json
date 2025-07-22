@@ -1,0 +1,28 @@
+{
+  "name": "CalcMate",
+  "short_name": "CalcMate",
+  "description": "A responsive calculator that works offline.",
+  "display": "standalone",
+  "background_color": "#ad8bf9",
+  "theme_color": "#00aaff",
+  "icons": [
+    {
+      "src": "images/calculator.png",
+      "sizes": "192x192",
+      "type": "image/png",
+        "purpose": "maskable"
+    },
+    {
+        "src": "images/calculator.png",
+        "sizes": "512x512",
+      "type": "image/png",
+        "purpose": "any maskable"
+    },
+    {
+        "src": "images/calculator.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

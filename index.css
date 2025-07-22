@@ -1,0 +1,250 @@
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #202124;
+  color: #206de0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Calculator Container */
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  background-color: #2d2e30;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Display Screen */
+.display {
+  width: 90%;
+  height: 100px;
+  background-color: #3c4043;
+  color: #e8eaed;
+  font-size: 48px;
+  text-align: right;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Result    */
+#result {
+  font-size: 2rem;
+  padding: 0 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: right;
+  direction: ltr;
+  scrollbar-width: none; /* Firefox ke liye */
+}
+
+#result::-webkit-scrollbar {
+  display: none; /* Chrome/Safari ke liye */
+}
+
+/* Buttons Grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* Button Styles */
+.btn {
+  width: 100%;
+  height: 70px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: #5f6368;
+  color: #e8eaed;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #70757a;
+}
+
+/* Operator Buttons */
+.operator {
+  background-color: #f2994a;
+  color: #fff;
+}
+
+.operator:hover {
+  background-color: #e67e22;
+}
+
+/* Equal Button */
+.equal {
+  background-color: #4caf50;
+  color: #fff;
+  grid-column: span 1;
+}
+
+.equal:hover {
+  background-color: #45a049;
+}
+
+/* Zero Button */
+.zero {
+  grid-column: span 2;
+}
+
+/* Percentage Button */
+.btn.operator[onclick="calculatePercentage()"] {
+  background-color: #5f6368;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #e8eaed;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: #f2994a;
+}
+
+/* History Toggle */
+.history-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #e8eaed;
+  transition: color 0.3s ease;
+}
+
+.history-toggle:hover {
+  color: #f2994a;
+}
+
+/* History Panel */
+.history-panel {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: left 0.3s ease;
+}
+
+.history-panel.active {
+  left: 0;
+}
+
+.history-content {
+  background-color: #2d2e30;
+  color: #e8eaed;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.history-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#history-list {
+  list-style: none;
+  padding: 0;
+}
+
+#history-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-history-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clear-history-btn:hover {
+  background-color: #e53935;
+}
+
+/* Light Theme */
+body.light-theme {
+  background-color: #90bacf;
+  color: #202124;
+}
+
+.light-theme .calculator {
+  background-color: #f7b1b191;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.light-theme .display {
+  background-color: #e8eaed;
+  color: #202124;
+}
+
+.light-theme .btn {
+  background-color: #f1f3f4;
+  color: #202124;
+}
+
+.light-theme .btn:hover {
+  background-color: #e0e0e0;
+}
+
+.light-theme .operator {
+  background-color: #f2994a;
+  color: #fff;
+}
+
+.light-theme .equal {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.light-theme .history-content {
+  background-color: #fff;
+  color: #202124;
+}
