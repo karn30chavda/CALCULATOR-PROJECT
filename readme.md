@@ -41,7 +41,7 @@ File Structure
 ├── 📄 index.html # Main Calculator Page
 ├── 📄 splash.html # Splash Screen Page
 ├── 📄 index.css # Styling
-├── 📄 script.css # Scripting
+├── 📄 script.js # Scripting
 ├── 📄 manifest.json # PWA Configuration
 ├── 📄 service-worker.js # Service Worker
 ├── 📂 images # Logo & Icons
